@@ -1,0 +1,135 @@
+# Dependencies and Setup
+import pandas as pd
+import numpy as np
+# Read the path using pandas into a DataFrame
+heroes = "Resources/purchase_data.csv"
+heroes_df = pd.read_csv(heroes)
+heroes_df.head()
+
+# calculate total players count
+total_player_count = len(heroes_df['SN'].unique())
+#create data frame
+player_count = pd.DataFrame ({"total_player_count": total_player_count},index = [0])
+player_count
+
+#Calculate unique count
+unique_count = len(heroes_df["Item ID"].unique())
+#calcualte average price
+avg_price = heroes_df["Price"].mean()
+#calculate total number of purchases
+total_purchases = heroes_df["Purchase ID"].count()
+#calcuate the total revenue
+revenue_total = heroes_df["Prince"].sum()
+#created summary data frame
+summary_analysis= pd.DataFrame({"Unique Items":unique_count,"Average Price":avg_price,"Number of Purchases":number_purchases, "Number of Purchases":total_purchases,"Total Revenue":revenue_total}, index=[0])
+summary_analysis["Average Price"] = summary_analysis["Average Price"].map("${:,.2f}".format)
+summary_analysis["Total Revenue"] = summary_analysis["Total Revenue"].map("${:,.2f}".format)
+summary_analysis
+
+#calculate percentage and count of players
+gender_grouping = heroes_df.groupby("Gender")
+unique players = gender_grouping ["SN"].nunique()
+player_percentage = (unique_players/total_player_count)*100
+
+create data frame
+gender_table = pd.DataFrame ({"Percentage of Players":player_percentage, "Total Counts":unique_players})
+gender_table["Percentage of Players"] = gender_table["percentage of Players"].map("{:.2f}".format)
+
+gender_table
+
+#Establish bins
+age = [0, 9.90, 14.90, 19.90, 24.90, 29.90, 34.90, 39.90, 99999]
+age_labels = ["<10", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39", "40+"]
+
+#cut data
+heroes_df["Age Group"]= pd.cut(heroes_df["Age"],age,labels = age_labels)
+heroes_df
+
+#groupby Age Group
+heroes_age_grouped = heroes_groupby("Age Group")
+
+#calculate total count and player percentage
+unique_members = heroes_age_grouped["SN"].nunique()
+player_percent = (unique_players/total_players)*100
+
+#create DataFrame
+age_demographics = pd.DataFrame({"Percentage of players":Percent_of_players,"Total count":unique_members})
+
+#change the index to none and clean
+age_demographics.index.name = None
+age_demographics["Percentage of players"] = age_demographics["Percentage of players"].map("{:.2f}".format)
+age_demographics
+
+#calculate purchase count 
+purchase_count = heroes_age_grouped["Age"].count()
+avg_puchase = heroes_age_grouped ["Price"].sum()
+total_purchase_value = (heroes_age_grouped["Price"].sum()/unique_players)
+
+#create a dataframe 
+purchase_analysis_age = pd.DataFrame({"Purchase count":purchase_count,"Average Purchase Price":avg_purchase, "Total Purchase value":total_purchase_value,"Average Purchase Total per person":avg_purchase_person})
+
+#clean formatting
+purchase_analysis_age["Average Purchase Price"] = purchase_analysis_age["Average Purchase Price"].map("${:.2f}".format)
+purchase_analysis_age["Total Purchase value"]  = purchase_analysis_age["Total Purchase value"].map("${:,.2f}".format)
+purchase_analysis_age["Average Purchase Total per person"] = purchase_analysis_age["Average Purchase Total per person"].map("${:.2f}".format)
+Purchase_analysis_age
+
+#do groupby
+heroes_SN_grouped = heroes_df.groupby("SN")
+
+#obtain purchase count, avg. purchase price and total purchase value
+purchase_count = heroes_SN_grouped["Age"].count()
+avg_purchase = heroes_SN_grouped["Price"].mean()
+total_purchase_value = heroes_SN_grouped["Price"].sum()
+
+#create dataframe
+top_spenders = top_spenders.sort_values("Total Purchase value", ascending = False)
+
+#clean formatting
+top_spenders["Average Purchase Price"] = top_spenders["Average Purchase Price"] = top_spenders["Average Purchase Price"].map("${:.2f}".format)
+top_spenders["total Purchase value"] = top_spenders["Total Purchase value"].map("${:,.2f}".format)
+
+top_spenders.head()
+
+#retrieve Item ID, Item Name, and Item Price
+popular_df = heroes_df.loc[:,["Item ID", "Item Name", "Priced"]]
+
+#group by Item ID and Item Name
+grouped_popular = heroes_df.groupby (["Item ID","Item Name"])
+
+#calculate purchase count, item price, and total purchase value
+purchase_count = grouped_popular["Age"].count()
+avg_purchase = grouped_popular["Prince"].mean()
+total_purchase_value = grouped_popular["Price"].sum()
+
+#create dataframe
+most_popular = most_popular.sort_values ("Purchase count", ascending = False)
+
+#clean formatting 
+most-popular["Total Purchase value"] = most_popular["Total Purchase value"].map("${:,.2f}".format)
+most_popular["Average Purchase Price"] = most_popular["Total Purchase value"].map("${:,.2f}".format)
+most_popular.head()
+
+#Group by Item ID and Item name
+popular_grouped = heroes_df.groupby(["Item ID", "Item Name"])
+
+#calculate purchase count, item price, and total purchase value
+purchase_count = popular_grouped ["Age"].count()
+avg_purchase = popular_grouped["Price"].mean()
+total_purchase_value = popular_grouped["Price"].sum()
+
+#create a DataFrame to hold the results
+most_profitable_items pd.DataFrame({"Purchase count":purchase_count,"Average Purchase Price":avg_purchase,"Total Purchase value":total_purchase_value})
+
+#sort total puruchase in descending order
+most_profitable_items = most_popular_items.sort_values("Total Purchase value", ascending = False)
+most_profitable_items["Total Purchase value"]  = most_popular_items["Total Purchase value"].map("${:,.2f}".format)
+most_profitable_items["Average Purchase Price"] = most_popular_items["Average Purchase Price"].map("${:.2f}".format)
+
+most_profitable_items.head()
+
+3 observable trends:
+
+1. 
+2. 
+3. 
